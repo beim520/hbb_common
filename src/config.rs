@@ -75,14 +75,14 @@ lazy_static::lazy_static! {
     static ref KEY_PAIR: Mutex<Option<KeyPair>> = Default::default();
     static ref USER_DEFAULT_CONFIG: RwLock<(UserDefaultConfig, Instant)> = RwLock::new((UserDefaultConfig::load(), Instant::now()));
     pub static ref NEW_STORED_PEER_CONFIG: Mutex<HashSet<String>> = Default::default();
-    pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
+    // pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = Default::default();
      pub static ref DEFAULT_SETTINGS: RwLock<HashMap<String, String>> = {
         let mut map = HashMap::new();
         //PIN解锁，下方有部分修复改功能代码，读取Repository secrets值
-        map.insert(
-            "unlock_pin".to_string(), 
-            option_env!("DEFAULT_PASSWORD").unwrap_or("").into()
-        );
+        // map.insert(
+        //     "unlock_pin".to_string(), 
+        //     option_env!("DEFAULT_PASSWORD").unwrap_or("").into()
+        // );
         //使用DirectX捕获屏幕
         map.insert("enable-directx-capture".to_string(), "Y".to_string());
         //访问模式，custom：自定义，full：完全控制，view：共享屏幕
@@ -3033,7 +3033,6 @@ pub mod keys {
     pub const OPTION_HIDE_USERNAME_ON_CARD: &str = "hide-username-on-card";
     pub const OPTION_HIDE_HELP_CARDS: &str = "hide-help-cards";
     pub const OPTION_DEFAULT_CONNECT_PASSWORD: &str = "default-connect-password";
-    pub const OPTION_HIDE_TRAY: &str = "hide-tray";
     pub const OPTION_ONE_WAY_CLIPBOARD_REDIRECTION: &str = "one-way-clipboard-redirection";
     pub const OPTION_ALLOW_LOGON_SCREEN_PASSWORD: &str = "allow-logon-screen-password";
     pub const OPTION_ALLOW_DEEP_LINK_PASSWORD: &str = "allow-deep-link-password";
